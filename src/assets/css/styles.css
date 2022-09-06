@@ -1,0 +1,35 @@
+* {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+header {
+    padding-top: 30px;
+    padding-bottom:30px;
+    background-image: url('../header bg.jpg');
+    background-repeat: repeat;
+
+}
+header h1{
+
+    font-size:36px;
+    font-weight:400;
+    text-align:center;
+    color:white
+
+}
+
+strong {
+    color:yellow;
+}
+
+.game {
+width: 100vw;
+height: 100vh;
+background-image: url('../page background.jpg');
+background-size: 100% 100%;
+opacity:90%;
+}
+
