@@ -8,21 +8,21 @@ the garbage collector won't collect the component.
 
 setTimeOut is useful when working with animations */
 
-const Board = ({animes,cardClicked,currentScore})=>{
+const Board = ({animes,handleClick,currentScore})=>{
     const [animate,setAnimate] = useState(false);
 
     useEffect(()=>{
         setAnimate(true);
         const timer= setTimeout(()=>{
             setAnimate(false)
-        }, 500)
+        }, 1000)
 
         return ()=> clearTimeout(timer)
     },[currentScore]);
 
     const renderedList = animes.map(anime => {
         return (
-            <div className='card'>
+            <div className={`card ${animate? 'scale' : ''}`} onClick={()=> handleClick(anime)} key={anime.id} >
             <div className="card__img">
             <img src={anime.attributes.posterImage.small} alt={anime.attributes.canonicalTitle} />
             </div>

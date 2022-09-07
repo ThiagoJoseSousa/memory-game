@@ -1,4 +1,6 @@
 function Header() {
+
+
     return (
         <header >
             <h1><strong>Anime</strong> Memory Game</h1>
