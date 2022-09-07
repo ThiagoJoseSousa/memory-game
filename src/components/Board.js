@@ -22,13 +22,16 @@ const Board = ({animes,cardClicked,currentScore})=>{
 
     const renderedList = animes.map(anime => {
         return (
-            <div>
-
+            <div className='card'>
+            <div className="card__img">
+            <img src={anime.attributes.posterImage.small} alt={anime.attributes.canonicalTitle} />
+            </div>
+            <div className="card__name">{anime.attributes.canonicalTitle}</div>
             </div>
         )
     })
 
-return <div>{renderedList}</div>
+return <div className='container'>{renderedList}</div>
 }
 
 export default Board;

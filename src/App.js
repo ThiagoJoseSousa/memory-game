@@ -5,8 +5,11 @@ import axios from 'axios';
 import reSortArray from './randomArray';
 
 const App=()=> {
-   const [animes,setAnime]=useState([]);
+   const [animes,setAnimes]=useState([]);
   const [currentScore,setCurrentScore] =useState(0);
+  const [maxScore, setMaxScore] = useState(null);
+  const [bestScore, setBestScore]=useState(0);
+  const [gameOver, setGameOver] = useState(false);
 
   useEffect (()=>{
     const fetchData = async () =>{
@@ -14,8 +17,10 @@ const App=()=> {
         const {data} = await axios.get (
           'https://kitsu.io/api/edge/anime?filter[categories]=adventure'
         );  
-        setAnime(reSortArray(data))
-        addIsClicked(data); {/* console log is double evoked because of strict mode in index.js */}
+        {/* console log is double evoked because of strict mode in index.js */}
+        addIsClicked(data.data)
+        setAnimes(reSortArray(data.data))
+        setMaxScore(data.data.length)
       } catch (err){
         console.error(err.message)
       }
@@ -26,13 +31,14 @@ fetchData(); {/*evoking on useEffect*/}
   },[])
 
   const addIsClicked= data=>{
-    data.data.forEach(anime => (anime.isClicked=false))
+    data.forEach(anime => (anime.isClicked=false))
   }
   
   return (
     <div className="App">
      <Header/>
-    <div className='game'></div>
+     
+    <div className='game'><Board animes={animes}/></div>
     </div>
   );
 }
